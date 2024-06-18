@@ -40,6 +40,7 @@ if link is broken check https://jaktestowac.pl/lesson/pw1s01l01/
 - Autosave: in File -> Auto Save
 - Timeline: file context menu -> Open Timeline
 - Formatting: editor -> context menu -> Format Document
+- Przeniesienie linii: Alt + strzałki 
 
 ## Playwright snippets
 - test:
