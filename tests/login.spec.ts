@@ -19,23 +19,36 @@ test.describe('User login to Demobank', () => {
   });
 
   test('unccessfull login with too short username', async ({ page }) => {
-    await page.goto('https://demo-bank.vercel.app/');
-    await page.getByTestId('login-input').fill('magda');
+    // Arrange
+    const url = 'https://demo-bank.vercel.app/';
+    const incorrectUserID = 'magda';
+    const expectedErrorMessage = 'identyfikator ma min. 8 znaków';
+
+    // Act
+    await page.goto(url);
+    await page.getByTestId('login-input').fill(incorrectUserID);
     await page.getByTestId('password-input').click();
 
-    await expect(page.getByTestId('error-login-id')).toHaveText(
-      'identyfikator ma min. 8 znaków',
-    );
+    // Assert
+    await expect(page.getByTestId('error-login-id')).toHaveText(expectedErrorMessage);
   });
 
   test('unccessfull login with too short password', async ({ page }) => {
-    await page.goto('https://demo-bank.vercel.app/');
-    await page.getByTestId('login-input').fill('magda123');
-    await page.getByTestId('password-input').fill('123');
+    // Arrange
+    const url = 'https://demo-bank.vercel.app/';
+    const userID = 'magda';
+    const incorrectPassword = '123';
+    const expectedErrorMessage = 'hasło ma min. 8 znaków';
+
+    // Act
+    await page.goto(url);
+    await page.getByTestId('login-input').fill(userID);
+    await page.getByTestId('password-input').fill(incorrectPassword);
     await page.getByTestId('password-input').blur();
 
+    // Assert
     await expect(page.getByTestId('error-login-password')).toHaveText(
-      'hasło ma min. 8 znaków',
+      expectedErrorMessage,
     );
   });
 });
