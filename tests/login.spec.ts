@@ -1,9 +1,8 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('User login to Demobank', () => {
-  
-  test.beforeEach( async ({ page }) => {
-    await page.goto('/')
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
   });
 
   test('login with correct credentials', async ({ page }) => {
@@ -31,7 +30,9 @@ test.describe('User login to Demobank', () => {
     await page.getByTestId('password-input').click();
 
     // Assert
-    await expect(page.getByTestId('error-login-id')).toHaveText(expectedErrorMessage);
+    await expect(page.getByTestId('error-login-id')).toHaveText(
+      expectedErrorMessage,
+    );
   });
 
   test('unccessfull login with too short password', async ({ page }) => {
